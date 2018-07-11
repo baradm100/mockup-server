@@ -1,0 +1,39 @@
+{
+  "name": "mockup-server",
+  "version": "1.0.0",
+  "description": "Simple Mock Up server in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "./node_modules/.bin/nodemon",
+    "start": "cross-env NODE_ENV=production node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baradm100/mockup-server.git"
+  },
+  "keywords": [
+    "mockup",
+    "express",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baradm100/mockup-server/issues"
+  },
+  "homepage": "https://github.com/baradm100/mockup-server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "morgan": "^1.9.0",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.0"
+  }
+}
