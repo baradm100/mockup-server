@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Load dynamic routes
 Object.keys(dynamicRoutes).forEach(function (url) {
-    router.get(url, (req, res) => {
+    router.all(url, (req, res) => {
         let response = dynamicRoutes[url];
         if (typeof response === 'function')
             res.status(200).json(response(req.params));
