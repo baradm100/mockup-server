@@ -17,9 +17,12 @@ const router = require('express').Router();
 app.use(logger(debug ? 'dev' : 'combined'));
 app.use(helmet());
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: false,
+    limit: '50mb'
 }));
 app.use(cookieParser());
 
@@ -31,7 +34,7 @@ Object.keys(dynamicRoutes).forEach(function (url) {
     router.all(url, (req, res) => {
         let response = dynamicRoutes[url];
         if (typeof response === 'function')
-            res.status(200).json(response(req.params));
+            res.status(200).json(response(req.body));
         else
             res.status(200).json(response);
     })
@@ -47,7 +50,7 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.send(err);
 });
 
 // Listening to the port

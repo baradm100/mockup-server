@@ -1,3 +1,4 @@
+const fs = require('fs');
 const MAX_USER_NUMBER = 1000;
 
 module.exports = {
@@ -20,4 +21,8 @@ module.exports = {
     "/users/:id": function (params) {
         return `The user id is ${params.id}`;
     },
+    "/dump": function (params) {
+        fs.writeFileSync(`dump/${Date.now().toString()}.json`, JSON.stringify(params));
+        return `The user id is ${1}`;
+    }
 }
