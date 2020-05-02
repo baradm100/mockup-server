@@ -12,9 +12,9 @@ Just say "Mock Up server"! By simulating a flexible (and dumb) API server we all
 
 ## Table of Contents
 
-* [How to run](#how-to-run)
-* [Routes](#routes)
-* [Contributing](#contributing)
+- [How to run](#how-to-run)
+- [Routes](#routes)
+- [Contributing](#contributing)
 
 ## How to run
 
@@ -38,8 +38,8 @@ $ npm start
 
 To make the routes as easy as possible we put all the routes to one file (`routes.js`) and created 2 types of render options:
 
-* Function
-* JSON (Object/String/Number/Boolean/etc.)
+- Function
+- JSON (Object/String/Number/Boolean/etc.)
 
 ### Adding route
 
@@ -47,25 +47,28 @@ To add a route just add to the `module.exports` in `routes.js` the route URL as 
 
 ```javascript
 module.exports = {
-    "/": { // JSON renderer
-        home: "page"
-    },
-    "/users": function () { // Function renderer
-        let users = [];
+  "/": {
+    // JSON renderer
+    home: "page",
+  },
+  "/users": function () {
+    // Function renderer
+    let users = []
 
-        for (let i = 0; i < MAX_USER_NUMBER; i++)
-            users.push({
-                id: Math.floor(Math.random() * Math.floor(MAX_USER_NUMBER)),
-                name: `user_${i}`
-            });
+    for (let i = 0; i < MAX_USER_NUMBER; i++)
+      users.push({
+        id: Math.floor(Math.random() * Math.floor(MAX_USER_NUMBER)),
+        name: `user_${i}`,
+      })
 
-        return users;
-    },
-    "/users/active_count": 100, // JSON renderer
-    "/users/current/name": "Current User", // JSON renderer
-    "/users/:id": function (params) { // Function renderer (with params)
-        return `The user id is ${params.id}`;
-    },
+    return users
+  },
+  "/users/active_count": 100, // JSON renderer
+  "/users/current/name": "Current User", // JSON renderer
+  "/users/:id": function (params) {
+    // Function renderer (with params)
+    return `The user id is ${params.id}`
+  },
 }
 ```
 
@@ -78,20 +81,22 @@ The function receive 1 argument, the params (`req.params`). For example:
 
 ```javascript
 module.exports = {
-    "/users": function () { // Function renderer, used for generating random users
-        let users = [];
+  "/users": function () {
+    // Function renderer, used for generating random users
+    let users = []
 
-        for (let i = 0; i < MAX_USER_NUMBER; i++)
-            users.push({
-                id: Math.floor(Math.random() * Math.floor(MAX_USER_NUMBER)),
-                name: `user_${i}`
-            });
+    for (let i = 0; i < MAX_USER_NUMBER; i++)
+      users.push({
+        id: Math.floor(Math.random() * Math.floor(MAX_USER_NUMBER)),
+        name: `user_${i}`,
+      })
 
-        return users;
-    },
-    "/users/:id": function (params) { // Function renderer with params, used to render the user id (`params.id`)
-        return `The user id is ${params.id}`;
-    },
+    return users
+  },
+  "/users/:id": function (params) {
+    // Function renderer with params, used to render the user id (`params.id`)
+    return `The user id is ${params.id}`
+  },
 }
 ```
 
